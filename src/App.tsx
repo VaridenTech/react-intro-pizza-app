@@ -1,41 +1,31 @@
-import React from "react";
+// delete the React import
 import { createRoot } from "react-dom/client";
+import Pizza from "./Pizza";
 
-type PizzaProps = {
-  name: string;
-  description: string;
-};
-
-const Pizza = (props: PizzaProps) => {
-  return React.createElement("div", {}, [
-    React.createElement("h1", {}, props.name),
-    React.createElement("p", {}, props.description),
-  ]);
-};
+// delete the Pizza component
 
 const App = () => {
-  return React.createElement("div", {}, [
-    React.createElement("h1", {}, "Pixel Perfect Pizzas"),
-    React.createElement(Pizza, {
-      name: "The Pepperoni Pizza",
-      description: "Mozzarella Cheese, Pepperoni",
-    }),
-    React.createElement(Pizza, {
-      name: "The Hawaiian Pizza",
-      description: "Sliced Ham, Pineapple, Mozzarella Cheese",
-    }),
-    React.createElement(Pizza, {
-      name: "The Big Meat Pizza",
-      description: "Bacon, Pepperoni, Italian Sausage, Chorizo Sausage",
-    }),
-  ]);
+  return (
+    <div>
+      <h1>Pizza app – Order Now</h1>
+      <Pizza name="Pepperoni" description="Mozzarella Cheese, Pepperoni" image={"/public/pizzas/pepperoni.webp"}/>
+      <Pizza
+        name="The Hawaiian Pizza"
+        description="Sliced Ham, Pineapple, Mozzarella Cheese"
+        image={"/public/pizzas/hawaiian.webp"}
+      />
+      <Pizza
+        name="The Big Meat Pizza"
+        description="Bacon, Pepperoni, Italian Sausage, Chorizo Sausage"
+        image={"/public/pizzas/big_meat.webp"}
+      />
+    </div>
+  );
 };
 
 const container = document.getElementById("root");
-
 if (!container) {
-    throw new Error("Root element not found");
+  throw new Error("ไม่พบ element ที่มี id=\"root\" ใน index.html");
 }
-
 const root = createRoot(container);
-root.render(React.createElement(App));
+root.render(<App />);
