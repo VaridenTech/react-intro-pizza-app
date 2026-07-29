@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "types": ["vite/client"],
+
+    /* React */
+    "jsx": "react-jsx",
+
+    /* เราให้ Vite เป็นคนแปลงโค้ด tsc มีหน้าที่ตรวจ type อย่างเดียว */
+    "noEmit": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+
+    "strict": true
+  },
+  "include": ["src", "*.ts"]
+}
