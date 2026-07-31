@@ -1,6 +1,7 @@
 // delete the React import
 import { createRoot } from "react-dom/client";
 import Order from "./Order";
+import PizzaOfTheDay from "./PizzaOfTheDay";
 
 // delete the Pizza component
 
@@ -9,6 +10,7 @@ const App = () => {
     <div>
       <h1>Pizza app – Order Now</h1>
       <Order />
+      <PizzaOfTheDay />
     </div>
   );
 };
