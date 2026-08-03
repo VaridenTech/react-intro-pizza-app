@@ -20,3 +20,17 @@ export type PastOrder = {
   date: string;
   time: string;
 };
+
+export type PastOrderItem = {
+  pizzaTypeId: string;
+  name: string;
+  size: PizzaSize;
+  quantity: number;
+  price: number;
+  total: number;
+  image: string;
+};
+
+export type PastOrderDetail = {
+  orderItems: PastOrderItem[];
+};
