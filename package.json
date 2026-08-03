@@ -16,6 +16,8 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@tanstack/react-router-devtools": "^1.167.0",
+    "@tanstack/router-plugin": "^1.168.23",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.2.0",
@@ -29,6 +31,7 @@
     "vite": "^8.1.5"
   },
   "dependencies": {
+    "@tanstack/react-router": "^1.170.18",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   }

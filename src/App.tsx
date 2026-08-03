@@ -1,25 +1,21 @@
-// delete the React import
-import { StrictMode, useState } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import Header from "./Header";
-import Order from "./Order";
-import PizzaOfTheDay from "./PizzaOfTheDay";
-import { CartContext } from "./contexts";
-import type { CartItem } from "./types";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { routeTree } from "./routeTree.gen";
 
-// delete the Pizza component
+const router = createRouter({ routeTree });
+
+// บอก TanStack Router ว่า router ตัวไหนคือตัวของแอปเรา
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
+}
 
 const App = () => {
-  const cartHook = useState<CartItem[]>([]);
   return (
     <StrictMode>
-      <CartContext.Provider value={cartHook}>
-        <div>
-          <Header />
-          <Order />
-          <PizzaOfTheDay />
-        </div>
-      </CartContext.Provider>
+      <RouterProvider router={router} />
     </StrictMode>
   );
 };
