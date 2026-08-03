@@ -6,7 +6,7 @@ export const Route = createLazyFileRoute("/contact")({
   component: ContactRoute,
 });
 
-function ContactRoute() {
+export function ContactRoute() {
   const mutation = useMutation({
     mutationFn: function (formData: FormData) {
       return postContact(
