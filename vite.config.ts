@@ -10,6 +10,9 @@ export default defineConfig({
         target: "http://localhost:3000",
         changeOrigin: true,
       },
+      // style.css, ฟอนต์ และ svg ย้ายมาอยู่ใน public/ ของ client แล้ว
+      // แต่รูปพิซซ่ายังมาจาก API ซึ่งตอบ path ขึ้นต้นด้วย /public/ อยู่
+      // proxy ตัวนี้จึงต้องอยู่ต่อ (ดูหมายเหตุผู้แปลในบทที่ 35)
       "/public": {
         target: "http://localhost:3000",
         changeOrigin: true,
