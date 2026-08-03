@@ -14,3 +14,9 @@ export type CartItem = {
   size: PizzaSize;
   price: string;
 };
+
+export type PastOrder = {
+  order_id: number;
+  date: string;
+  time: string;
+};
