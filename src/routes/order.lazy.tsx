@@ -53,16 +53,15 @@ function Order() {
     setLoading(false);
   }
 
+  function addToCart() {
+    if (!selectedPizza) return;
+    setCart([...cart, { pizza: selectedPizza, size: pizzaSize, price }]);
+  }
+
   return (
     <div className="order">
       <h2>Create Order</h2>
-      <form
-        onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-          e.preventDefault();
-          if (!selectedPizza) return;
-          setCart([...cart, { pizza: selectedPizza, size: pizzaSize, price }]);
-        }}
-      >
+      <form action={addToCart}>
         <div>
           <div>
             <label htmlFor="pizza-type">Pizza Type</label>
