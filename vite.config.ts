@@ -16,7 +16,21 @@ export default defineConfig({
       },
     },
   },
-  plugins: [tanstackRouter({ target: "react", autoCodeSplitting: true }), react()],
+  plugins: [
+    tanstackRouter({ target: "react", autoCodeSplitting: true }),
+    react({
+      babel: {
+        plugins: [
+          [
+            "babel-plugin-react-compiler",
+            {
+              target: "19",
+            },
+          ],
+        ],
+      },
+    }),
+  ],
   test: {
     // coverage อยู่ระดับนอก จะได้รวมผลของทั้งสอง project เข้าด้วยกัน
     coverage: {
