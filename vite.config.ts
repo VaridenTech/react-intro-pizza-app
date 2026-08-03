@@ -18,5 +18,8 @@ export default defineConfig({
   plugins: [tanstackRouter({ target: "react", autoCodeSplitting: true }), react()],
   test: {
     environment: "happy-dom",
+    coverage: {
+      reporter: ["text", "json", "html"],
+    },
   },
 });
