@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Pizza from "./Pizza";
 import Cart from "./Cart";
-import type { Pizza as PizzaType, PizzaSize, CartItem } from "./types";
+import { CartContext } from "./contexts";
+import type { Pizza as PizzaType, PizzaSize } from "./types";
 
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -14,7 +15,7 @@ export default function Order() {
   const [pizzaSize, setPizzaSize] = useState<PizzaSize>("M");
   const [pizzaTypes, setPizzaTypes] = useState<PizzaType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cart, setCart] = useContext(CartContext);
 
   const selectedPizza = pizzaTypes.find((pizza) => pizzaType === pizza.id);
   const price = selectedPizza ? intl.format(selectedPizza.sizes[pizzaSize]) : "";
