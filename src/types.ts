@@ -8,3 +8,9 @@ export type Pizza = {
   image: string;
   sizes: Record<PizzaSize, number>;
 };
+
+export type CartItem = {
+  pizza: Pizza;
+  size: PizzaSize;
+  price: string;
+};

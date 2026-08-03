@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Pizza from "./Pizza";
-import type { Pizza as PizzaType, PizzaSize } from "./types";
+import Cart from "./Cart";
+import type { Pizza as PizzaType, PizzaSize, CartItem } from "./types";
 
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -13,6 +14,7 @@ export default function Order() {
   const [pizzaSize, setPizzaSize] = useState<PizzaSize>("M");
   const [pizzaTypes, setPizzaTypes] = useState<PizzaType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [cart, setCart] = useState<CartItem[]>([]);
 
   const selectedPizza = pizzaTypes.find((pizza) => pizzaType === pizza.id);
   const price = selectedPizza ? intl.format(selectedPizza.sizes[pizzaSize]) : "";
@@ -28,10 +30,33 @@ export default function Order() {
     setLoading(false);
   }
 
+  async function checkout() {
+    setLoading(true);
+
+    await fetch("/api/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        cart,
+      }),
+    });
+
+    setCart([]);
+    setLoading(false);
+  }
+
   return (
     <div className="order">
       <h2>Create Order</h2>
-      <form>
+      <form
+        onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+          e.preventDefault();
+          if (!selectedPizza) return;
+          setCart([...cart, { pizza: selectedPizza, size: pizzaSize, price }]);
+        }}
+      >
         <div>
           <div>
             <label htmlFor="pizza-type">Pizza Type</label>
@@ -108,6 +133,7 @@ export default function Order() {
           </div>
         )}
       </form>
+      {loading ? <h2>LOADING …</h2> : <Cart checkout={checkout} cart={cart} />}
     </div>
   );
 }
